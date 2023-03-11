@@ -1,20 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>
-      Blank
+      Ionic Reminder
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="light">
   <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+    <ion-toolbar color="primary">
+      <ion-title size="large">Ionic Reminder</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <app-create-reminder (onChange)="addReminder($event)"></app-create-reminder>
+  <ion-grid>
+    <ion-row *ngIf="getUpcomingReminders().length">
+      <ion-col>
+        <ion-title>Upcoming Reminders</ion-title>
+        <app-reminder-item *ngFor="let reminder of getUpcomingReminders()" [id]="reminder.id" [name]="reminder.name" [time]="reminder.time" 
+        (onDismiss)="dismissReminder($event)" [hasPassed]="hasPassed(reminder.time)"></app-reminder-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="getPastReminders().length">
+      <ion-col>
+        <ion-title>Past Reminders</ion-title>
+        <app-reminder-item *ngFor="let reminder of getPastReminders()" [id]="reminder.id" [name]="reminder.name" [time]="reminder.time" 
+        (onDismiss)="dismissReminder($event)" [hasPassed]="hasPassed(reminder.time)"></app-reminder-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

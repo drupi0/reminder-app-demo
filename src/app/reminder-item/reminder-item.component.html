@@ -1,0 +1,18 @@
+<ion-card class="ion-margin-bottom" [ngClass]="{
+  pass: hasPassed
+}">
+  <ion-card-header>
+    <ion-card-title>{{ name }}</ion-card-title>
+    <ion-card-subtitle>{{ toIsoDate(time) }}</ion-card-subtitle>
+  </ion-card-header>
+  <ion-footer>
+    <ion-toolbar>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" color="danger" (click)="dismiss()">
+          <ion-icon name="trash-outline" slot="start"></ion-icon>
+          Dismiss
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+</ion-card>

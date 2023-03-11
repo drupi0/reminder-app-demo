@@ -1,0 +1,38 @@
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Create new Reminder</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col>
+              <ion-item fill="outline">
+                <ion-label position="stacked">Reminder Name</ion-label>
+                <ion-input type="text" placeholder="Enter Name" [(ngModel)]="reminderObj.name"></ion-input>
+              </ion-item>
+              <ion-item fill="outline" class="ion-margin-top ion-padding-bottom">
+                <ion-label position="stacked">Reminder Date</ion-label>
+                <ion-datetime-button datetime="datetime"  class="ion-margin-top"></ion-datetime-button>
+                <ion-modal [keepContentsMounted]="true">
+                  <ng-template>
+                    <ion-datetime id="datetime" [min]="currentIso" [showDefaultButtons]="true"
+                    [(ngModel)]="reminderObj.time"></ion-datetime>
+                  </ng-template>
+                </ion-modal>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button (click)="setReminder()" expand="block">
+                Set Reminder
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
